@@ -16,6 +16,8 @@ jobs:
           repository: 'spack/spack'
           path: '~/spack'
           ref: releases/v0.20
+      - name: Debug
+        run:  ls ~/spack
       - name: Install spack
         run:  . ~/spack/share/spack/setup-env.sh
       - name: Checkout
