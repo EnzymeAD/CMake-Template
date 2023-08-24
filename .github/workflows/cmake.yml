@@ -19,7 +19,8 @@ jobs:
       - name: Install spack
         run: |
           source ./spack/share/spack/setup-env.sh
-          spack env load ./main
+          spack env activate ./main
+          spack external find
           spack install
       - name: Checkout
         uses: actions/checkout@v3    
