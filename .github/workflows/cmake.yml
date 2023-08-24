@@ -17,7 +17,7 @@ jobs:
           path: 'spack'
           ref: releases/v0.20
       - name: Install spack
-        run:  . spack/share/spack/setup-env.sh
+        run:  source ./spack/share/spack/setup-env.sh
       - name: Checkout
         uses: actions/checkout@v3    
         with:
