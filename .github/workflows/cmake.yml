@@ -14,12 +14,10 @@ jobs:
         uses: actions/checkout@v3 
         with:
           repository: 'spack/spack'
-          path: '~/spack'
+          path: '$HOME/spack'
           ref: releases/v0.20
-      - name: Debug
-        run:  ls ~/spack
       - name: Install spack
-        run:  . ~/spack/share/spack/setup-env.sh
+        run:  . $HOME/spack/share/spack/setup-env.sh
       - name: Checkout
         uses: actions/checkout@v3      
       - name: Install dependencies
