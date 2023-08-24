@@ -17,8 +17,8 @@ get_target_property(ClangEnzyme ClangEnzyme-${Enzyme_LLVM_VERSION_MAJOR} LOCATIO
 
 message("Found Enzyme at: " ${ClangEnzyme})
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-exceptions -fno-experimental-new-pass-manager -fuse-ld=lld -flto")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fno-experimental-new-pass-manager -fuse-ld=lld -flto")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-exceptions -fuse-ld=lld -flto")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fuse-ld=lld -flto")
 set(CMAKE_EXE_LINKER_FLAGS "-fuse-ld=lld -flto -Wl,-mllvm=-load=${ClangEnzyme}")
 set(CMAKE_SHARED_LINKER_FLAGS "-fuse-ld=lld -flto -Wl,-mllvm=-load=${ClangEnzyme}")
 
