@@ -17,22 +17,21 @@ jobs:
           path: 'spack'
           ref: releases/v0.20
       - name: Install spack
-        run: |
-          source ./spack/share/spack/setup-env.sh
-          spack env activate ./main
-          spack external find
-          spack install
+        run: echo ". ${{ github.workspace }}/spack/share/spack/setup-env.sh" >> "$HOME/.bash_profile"
       - name: Checkout
         uses: actions/checkout@v3    
         with:
           path: 'main'
       - name: Install dependencies
         working-directory: ./main
+        shell: bash -l {0}
         run: |
-          spack env load .
+          spack env activate ./main
+          spack external find
           spack install
       - name: Configure
         working-directory: ./main
+        shell: bash -l {0}
         run: mkdir build && cd build && cmake ..
       - name: Build
         working-directory: ./main
