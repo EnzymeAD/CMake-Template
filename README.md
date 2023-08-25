@@ -11,7 +11,7 @@
 
 Using spack:
 ```
-spack env load .
+spack env activate .
 spack install
 ```
 
