@@ -15,7 +15,7 @@ jobs:
         with:
           repository: 'EnzymeAD/Enzyme'
           path: 'enzyme'
-          ref: releases/v0.0.81
+          ref: v0.0.81
       - name: cmake
         working-directory: enzyme
         run: mkdir build && cmake ../enzyme -DLLVM_EXTERNAL_LIT=`which lit` -DCMAKE_BUILD_TYPE=${{ matrix.build }} -DLLVM_DIR=/usr/lib/llvm-${{ matrix.llvm }}/lib/cmake/llvm
