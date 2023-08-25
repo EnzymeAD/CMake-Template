@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.9)
 
-find_package(Enzyme REQUIRED CONFIG NO_DEFAULT_PATH)
+find_package(Enzyme REQUIRED CONFIG)
 
 message("LLVM Version: " ${Enzyme_LLVM_VERSION_MAJOR})
 message("Found LLVM at: " ${Enzyme_LLVM_BINARY_DIR})

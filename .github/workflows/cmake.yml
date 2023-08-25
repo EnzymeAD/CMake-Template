@@ -1,0 +1,36 @@
+name: CMake
+
+on:
+  push:
+    branches: ['main']
+  pull_request:
+    branches: ['main']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install dependencies 
+        run: sudo apt-get install -y cmake make llvm-dev lld clang libclang-dev
+      - name: Checkout Enzyme
+        uses: actions/checkout@v3 
+        with:
+          repository: 'EnzymeAD/Enzyme'
+          path: 'enzyme'
+      - name: cmake
+        working-directory: enzyme
+        run: mkdir build && cd build && cmake ../enzyme -DCMAKE_BUILD_TYPE=Release
+      - name: make
+        working-directory: enzyme/build
+        run: sudo make -j `nproc` install        
+      - name: Checkout
+        uses: actions/checkout@v3    
+        with:
+          path: 'main'
+      - name: Configure
+        working-directory: ./main
+        run: mkdir build && cd build && cmake ..
+      - name: Build
+        working-directory: ./main/build
+        run: make
+      
