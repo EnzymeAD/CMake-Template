@@ -29,6 +29,6 @@ jobs:
         working-directory: ./main
         run: mkdir build && cd build && cmake ..
       - name: Build
-        working-directory: ./main
+        working-directory: ./main/build
         run: make
       
