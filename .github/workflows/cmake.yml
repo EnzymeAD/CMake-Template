@@ -15,7 +15,6 @@ jobs:
         with:
           repository: 'EnzymeAD/Enzyme'
           path: 'enzyme'
-          ref: v0.0.81
       - name: cmake
         working-directory: enzyme
         run: mkdir build && cd build && cmake ../enzyme -DCMAKE_BUILD_TYPE=Release
