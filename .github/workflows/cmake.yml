@@ -10,28 +10,29 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout spack
+      - name: Install dependencies 
+        run: sudo apt-get install -y cmake make llvm-dev lld clang libclang-dev
+      - name: Checkout Enzyme
         uses: actions/checkout@v3 
         with:
-          repository: 'spack/spack'
-          path: 'spack'
-          ref: releases/v0.20
-      - name: Install spack
-        run: echo ". ${{ github.workspace }}/spack/share/spack/setup-env.sh" >> "$HOME/.bash_profile"
+          repository: 'EnzymeAD/Enzyme'
+          path: 'enzyme'
+          ref: releases/v0.0.81
+      - name: cmake
+        working-directory: enzyme
+        run: mkdir build && cmake ../enzyme -DLLVM_EXTERNAL_LIT=`which lit` -DCMAKE_BUILD_TYPE=${{ matrix.build }} -DLLVM_DIR=/usr/lib/llvm-${{ matrix.llvm }}/lib/cmake/llvm
+      - name: make
+        working-directory: enzyme/build
+        run: make -j `nproc` LLVMEnzyme-${{ matrix.llvm }} ClangEnzyme-${{ matrix.llvm }} LLDEnzyme-${{ matrix.llvm }}        
+      - name: Install Enzyme
+        working-directory: enzyme/build
+        run: make install
       - name: Checkout
         uses: actions/checkout@v3    
         with:
           path: 'main'
-      - name: Install dependencies
-        working-directory: ./main
-        shell: bash -l {0}
-        run: |
-          spack env activate .
-          spack external find
-          spack install
       - name: Configure
         working-directory: ./main
-        shell: bash -l {0}
         run: mkdir build && cd build && cmake ..
       - name: Build
         working-directory: ./main
