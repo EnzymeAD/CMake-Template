@@ -26,7 +26,7 @@ jobs:
         working-directory: ./main
         shell: bash -l {0}
         run: |
-          spack env activate ./main
+          spack env activate .
           spack external find
           spack install
       - name: Configure
