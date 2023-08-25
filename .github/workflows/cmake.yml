@@ -21,10 +21,7 @@ jobs:
         run: mkdir build && cd build && cmake ../enzyme -DCMAKE_BUILD_TYPE=Release
       - name: make
         working-directory: enzyme/build
-        run: make -j `nproc` LLVMEnzyme-${{ matrix.llvm }} ClangEnzyme-${{ matrix.llvm }} LLDEnzyme-${{ matrix.llvm }}        
-      - name: Install Enzyme
-        working-directory: enzyme/build
-        run: make install
+        run: make -j `nproc` install        
       - name: Checkout
         uses: actions/checkout@v3    
         with:
