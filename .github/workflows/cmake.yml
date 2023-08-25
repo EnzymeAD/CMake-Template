@@ -20,7 +20,7 @@ jobs:
         run: mkdir build && cd build && cmake ../enzyme -DCMAKE_BUILD_TYPE=Release
       - name: make
         working-directory: enzyme/build
-        run: make -j `nproc` install        
+        run: sudo make -j `nproc` install        
       - name: Checkout
         uses: actions/checkout@v3    
         with:
