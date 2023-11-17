@@ -13,7 +13,7 @@ jobs:
       - name: Install dependencies 
         run: sudo apt-get install -y cmake make llvm-dev lld clang libclang-dev
       - name: Checkout Enzyme
-        uses: actions/checkout@v3 
+        uses: actions/checkout@v4 
         with:
           repository: 'EnzymeAD/Enzyme'
           path: 'enzyme'
@@ -24,7 +24,7 @@ jobs:
         working-directory: enzyme/build
         run: sudo make -j `nproc` install        
       - name: Checkout
-        uses: actions/checkout@v3    
+        uses: actions/checkout@v4    
         with:
           path: 'main'
       - name: Configure
